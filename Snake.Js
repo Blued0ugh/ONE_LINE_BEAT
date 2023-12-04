@@ -5,24 +5,22 @@ const ctx = canvas.getContext("2d");
 
 
 let score=0;
-//점수 초기화
 let Game_Alive=false;
 
+let Notes=[];
+var audio = new Audio("MUSIC_FILE.mp3");
+audio.load();
+audio.volume = 0.05;
 
-let Notes=[]; //노트들 넣고 빼고 할 배열 만들어주기 
-var audio = new Audio("MUSIC_FILE.mp3"); //음악 파일 가져오기
-audio.load(); //음악 로드
-audio.volume = 0.5;//음악 볼륨 정하기 
+var Click = new Audio("pop.mp3");
+Click.load();
+Click.volume = 1;
 
-//var Click = new Audio("pop.mp3");
-//Click.load(); 안씀 
-//Click.volume = 1;
 
-//판정선 이미지 가져오기 
 var Judgeimg = new Image();
     Judgeimg.src="Judge.png";
 
-function DrawJudge()//판정선 그리기 
+function DrawJudge()
 {
     
     ctx.beginPath(); // Start a new path
@@ -35,10 +33,8 @@ function DrawJudge()//판정선 그리기
 }
 
 
-//노트 분홍색 가져오기 
 var img = new Image();
 img.src="note.png";
-
 
 var img_=new Image();
 img_.src="note_.png";
@@ -59,7 +55,7 @@ class Note{
  
     }
 
-    Update() //노트.업데이트로 노트의 위치를 업데이트해준다 
+    Update()
     {
     this.NoteY+=this.NoteSpeed; //속도만큼 Y좌표 바꿔주기
     this.Draw();//그리기 함수 호출 
@@ -68,11 +64,11 @@ class Note{
     {
         
  
-            console.log("MISS")//캔버스 아래로 내려가면 미스남 
-        document.getElementsByClassName("JUDGE")[0].innerHTML="MISS";//판정 가져와서 미스로 글자 바꾸기 
+            console.log("MISS")
+        document.getElementsByClassName("JUDGE")[0].innerHTML="MISS";
         
 
-        this.DelNote(); // 이 노트 삭제하기 
+        this.DelNote();
     }
 
     }
@@ -80,21 +76,21 @@ class Note{
     Draw()
     {
         //ctx
-        ctx.drawImage(img, this.NoteX, this.NoteY, this.NoteW, this.NoteH); //나 그리기 
+        ctx.drawImage(img, this.NoteX, this.NoteY, this.NoteW, this.NoteH);
     }
 
-    DelNote() //이노트 삭제하기 
+    DelNote()
     {
 
-        Notes.splice(0, 1); //notes배열의 0번째(가장아래)1개를 없앤다
-        delete(this);//나를 없앤다 
+        Notes.splice(0, 1);
+        delete(this);
     }
 
 
 }
 
 
-class Note_{ //파랑 노트임 
+class Note_{
     constructor(NoteType){
     this.NoteX=40;//x=0
     this.NoteY=0; //100px가 중앙임 
@@ -147,16 +143,15 @@ class Note_{ //파랑 노트임
 
 }
 
-function SpawnNote(typeofNote) //노트 소환하기 
+function SpawnNote(typeofNote)
 {
-//f와 j는 색이 다른거임 
     if(typeofNote=="f")
     {let NewNote=new Note(typeofNote);
     Notes.push(NewNote);}
     else if (typeofNote=="j")
     {
         let NewNote=new Note_(typeofNote);
-    Notes.push(NewNote); //notes배열에 푸쉬해서 넣어준다 
+    Notes.push(NewNote);
     }
 }
 
@@ -167,13 +162,13 @@ function SpawnNote(typeofNote) //노트 소환하기
 //배열에서 삭제->딜리트 노트 
 
 let NoteTime = 352;
-//let HalfNoteTime=176;
-//let QuatNoteTime=25;
+let HalfNoteTime=176;
+let QuatNoteTime=25;
 let Game_NoteTimer=0;
-//...
 
-let round =0; //표시용 
-let i=-2; //내려오는 속도 맞춰주려고 i -2한걸 표준으로.. 
+
+let round =0;
+let i=-2;
 
 function Update()
 {
@@ -212,7 +207,6 @@ function Update()
     }
     else if(i<130-4)
     {
-//채보 돌려막기 
         round=1;
         One(i)
         
@@ -283,7 +277,6 @@ function Update()
 
 function GameEnd()
 {
-//종료 
     let Final = document.createElement("h1");
     let RetryB= document.createElement("button");
     RetryB.classList.add("retry");
