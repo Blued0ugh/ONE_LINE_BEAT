@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE LINE BEAT</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bungee', sans-serif;
+        } /*전체*/
+
+        body{
+            background-color:white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .Game_View{
+            background-color: white;
+            padding: 2rem; /*글자 하ㅏ나 기준 rem*/
+            /*border-radius: 1rem;*/
+            border-radius: 1rem;
+            box-shadow: 0 0 1rem rgba(0, 0, 0, .1);
+            text-align: center;
+            
+        }
+        .JUDGE
+        {
+            margin: 0; padding: 0;
+            color: gray;
+        }
+
+
+        canvas{
+            width: 200px;
+            height: 400px;
+            box-shadow: 0 0 1rem rgba(0, 0, 0, .07);
+            border-radius: 1rem;
+            background-color:   whitesmoke;
+        }
+    </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="Game_View">
+        <h1 style="font-size:x-large; margin: 0; padding: 0;">ONE-LINE-BEAT</h1>
+        <canvas id="Game_Canvas"></canvas>
+        <p class="score" style="font-size:small; margin: 0; padding: 0;">SCORE| <span id="score">0</span></p>
+        <button id="StartB" onclick="Game_Start()">START</button>
+    </div>
+    
+   
+
+
+    <script src="Snake.Js"></script>
+</body>
+</html>
