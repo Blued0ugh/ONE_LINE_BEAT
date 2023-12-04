@@ -460,15 +460,15 @@ function Three(i)
 
 
 window.addEventListener("keydown", e => {
-    //f랑 j키 눌렀을 때 판정학; 
+    
     if (e.key=="f") 
     {
      console.log("f"+ " "+ i);
-    Judgeimg.src="Judge_Pr.png"; //눌리면 판정선 이펙트(색 바꾸기) 
+    Judgeimg.src="Judge_Pr.png";
        // if()
 
        if(Notes[0].NoteY>=120&&Notes[0].NoteY<=140)
-       {console.log("Perfect") //거리 재서 perfect good bad 작성 
+       {console.log("Perfect")
        document.getElementsByClassName("JUDGE")[0].innerHTML="Perfect";
        score+=5;
 
@@ -484,10 +484,11 @@ window.addEventListener("keydown", e => {
        document.getElementsByClassName("JUDGE")[0].innerHTML="BAD";
        score+=1;
        }
+
        Notes[0].DelNote();
-    }//j도 똑같이 
+       
 
-
+    }
     else if(e.key=="j")
     {
        console.log("j"+ " "+ i);
@@ -548,5 +549,3 @@ requestAnimationFrame(Update);
 
 audio.play();
 }
-
-
